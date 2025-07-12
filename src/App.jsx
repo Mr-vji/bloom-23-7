@@ -14,7 +14,7 @@ function App() {
             {/* <fog attach="fog" args={["black", 8, 22]} />
             <color attach="background" args={["black"]} /> */}
             <Experience />
-            <Preloader />
+            {/* <Preloader /> */}
             <group position={[0.5, -0.5, 0]}>
                <LoopBox />
             </group>
