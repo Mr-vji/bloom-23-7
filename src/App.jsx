@@ -7,7 +7,7 @@ import { LoopBox } from "./components/LoopBox";
 function App() {
    return (
       <>
-         <Stats />
+         {/* <Stats /> */}
          {/* <UI /> */}
          <Loader />
          <Canvas shadows camera={{ position: [0, 1, 4], fov: 30 }}>
@@ -23,22 +23,22 @@ function App() {
    );
 }
 
-const sfxs = [
-   "/sfxs/fire.mp3",
-   "/sfxs/freeze.mp3",
-   "/sfxs/buildup.mp3",
-   "/sfxs/gravity.mp3",
-   "/sfxs/blast.mp3",
-];
+// const sfxs = [
+//    "/sfxs/fire.mp3",
+//    "/sfxs/freeze.mp3",
+//    "/sfxs/buildup.mp3",
+//    "/sfxs/gravity.mp3",
+//    "/sfxs/blast.mp3",
+// ];
 
-const Preloader = () => {
-   return (
-      <>
-         {sfxs.map((url) => (
-            <PositionalAudio url={url} autoplay={false} key={url} />
-         ))}
-      </>
-   );
-};
+// const Preloader = () => {
+//    return (
+//       <>
+//          {sfxs.map((url) => (
+//             <PositionalAudio url={url} autoplay={false} key={url} />
+//          ))}
+//       </>
+//    );
+// };
 
 export default App;
