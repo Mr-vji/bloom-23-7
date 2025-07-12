@@ -1,0 +1,36 @@
+import { ContactShadows, Environment, OrbitControls } from "@react-three/drei";
+import { Bloom, EffectComposer } from "@react-three/postprocessing";
+import { Magic } from "./Magic";
+import { Vji } from "./Vji";
+
+export const Experience = () => {
+   return (
+      <>
+         <OrbitControls enabled={false} />
+         {/* <Environment preset="night" /> */}
+         <directionalLight
+            position={[1.5, 5, -5]}
+            castShadow
+            intensity={0.5}
+            shadow-mapSize-width={128}
+            shadow-mapSize-height={128}
+         />
+         {/* <Magic /> */}
+         <OrbitControls
+            minDistance={8}
+            maxDistance={8}
+            minPolarAngle={Math.PI / 4}
+            maxPolarAngle={Math.PI / 2}
+            minAzimuthAngle={-Math.PI / 4}
+            maxAzimuthAngle={Math.PI / 4}
+         />
+         <group position={[0, -0.5, 0]}>
+            <Vji />
+         </group>
+
+         <EffectComposer>
+            <Bloom intensity={0.9} luminanceThreshold={1} mipmapBlur />
+         </EffectComposer>
+      </>
+   );
+};
