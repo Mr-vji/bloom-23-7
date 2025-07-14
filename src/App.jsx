@@ -10,7 +10,7 @@ import Content from "./Yesca/Content";
 function App() {
    return (
       <>
-         <Stats />
+         {/* <Stats /> */}
          {/* <UI /> */}
          <Loader />
          <Canvas shadows camera={{ position: [0, 1, 19], fov: 10 }}>
