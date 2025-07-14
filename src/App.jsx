@@ -5,6 +5,7 @@ import { UI } from "./components/UI";
 import { LoopBox } from "./components/LoopBox";
 import { Home } from "./Yesca/Home";
 import { Leva } from "leva";
+import Content from "./Yesca/Content";
 
 function App() {
    return (
@@ -23,6 +24,7 @@ function App() {
             <color attach="background" args={["#10141c"]} /> */}
             <Home />
          </Canvas>
+         <Content />
       </>
    );
 }
