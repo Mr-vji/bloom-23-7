@@ -2,6 +2,7 @@ import { ContactShadows, Environment, OrbitControls } from "@react-three/drei";
 import { Bloom, EffectComposer } from "@react-three/postprocessing";
 import { Magic } from "./Magic";
 import { Vji } from "./Vji";
+import { LoopBox } from "./LoopBox";
 
 export const Experience = () => {
    return (
@@ -28,8 +29,12 @@ export const Experience = () => {
             <Vji />
          </group>
 
+         <group position={[0.5, -0.5, 0]}>
+            <LoopBox />
+         </group>
+
          <EffectComposer>
-            <Bloom intensity={0.9} luminanceThreshold={1} mipmapBlur />
+            <Bloom intensity={0.3} luminanceThreshold={1.3} mipmapBlur />
          </EffectComposer>
       </>
    );

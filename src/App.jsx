@@ -15,9 +15,6 @@ function App() {
             <color attach="background" args={["black"]} /> */}
             <Experience />
             {/* <Preloader /> */}
-            <group position={[0.5, -0.5, 0]}>
-               <LoopBox />
-            </group>
          </Canvas>
       </>
    );

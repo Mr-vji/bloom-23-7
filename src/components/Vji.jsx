@@ -41,8 +41,8 @@ const VFXS = () => {
             settings={{
                nbParticles: 1000,
                renderMode: "mesh",
-               intensity: 5,
-               perParticleScale: (i) => [1, Math.random() * 2 + 0.5, 1], // random height between 0.5 - 2.5
+               intensity: 16,
+               perParticleScale: (i) => [1, Math.random() * 8 + 0.5, 1],
             }}
          />
       </>
@@ -62,21 +62,21 @@ const Void = ({ ...props }) => {
       <group {...props}>
          <VFXEmitter
             emitter="capsules"
-            // debug
+            debug
             settings={{
-               duration: 1,
-               delay: 1,
-               nbParticles: 80,
+               duration: 2,
+               delay: 0,
+               nbParticles: 180,
                spawnMode: "time",
                loop: true,
-               startPositionMin: [-0.2, 2, -0.3],
+               startPositionMin: [-0.2, 3, -0.3],
                startPositionMax: [0.2, -1, 0.3],
                startRotationMin: [0, 0, 0],
                startRotationMax: [0, 0, 0],
                particlesLifetime: [0.1, 8.9],
-               speed: [0, 0.3],
+               speed: [0.5, 0.5],
                directionMin: [0, -1, 0],
-               directionMax: [0, 0, 0],
+               directionMax: [0, -1, 0],
                rotationSpeedMin: [0, 0, 0],
                rotationSpeedMax: [0, 0, 0],
                colorStart: ["#ffffff", "#45eaff"],
