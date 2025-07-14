@@ -2,23 +2,14 @@ import { Environment } from "@react-three/drei";
 import { VFXEmitter, VFXParticles } from "wawa-vfx";
 import * as THREE from "three";
 
-export const Vji = () => {
+export const Vji = (props) => {
    const color = new THREE.Color("red");
    color.multiplyScalar(12);
    return (
       <>
-         <group position={[0, 0.5, 0]}>
+         <group position={[0, 0, 0]} {...props}>
             <VFXS />;
             <Spells />
-            <mesh position={[0, 0.01, 0]} scale={1}>
-               <boxGeometry args={[0.5, 0.01, 0.7]} />
-               <meshStandardMaterial color="#45eaff" emissive="#45eaff" emissiveIntensity={1} />
-            </mesh>
-            <Environment preset="city" />
-            <mesh position={[0, -5 + 0.002, 0]}>
-               <boxGeometry args={[0.5, 10, 0.7]} />
-               <meshStandardMaterial color="red" roughness={0.5} metalness={0.5} />
-            </mesh>
          </group>
       </>
    );
@@ -64,6 +55,30 @@ const Void = ({ ...props }) => {
             emitter="capsules"
             // debug
             settings={{
+               duration: 1,
+               delay: 0,
+               nbParticles: 180,
+               spawnMode: "time",
+               loop: true,
+               startPositionMin: [0.1, 1.9, 0.05],
+               startPositionMax: [-0.1, 2.2, -0.05],
+               startRotationMin: [0, 0, 0],
+               startRotationMax: [0, 0, 0],
+               particlesLifetime: [0, 2.2],
+               speed: [1, 1],
+               directionMin: [0, -1, 0],
+               directionMax: [0, -1, 0],
+               rotationSpeedMin: [0, 0, 0],
+               rotationSpeedMax: [0, 0, 0],
+               colorStart: ["#ffffff", "#8d97eb", "#dec4c4"],
+               colorEnd: ["#0010ff", "#d736ff", "#315dff"],
+               size: [0.01, 0.03],
+            }}
+         />
+         {/* <VFXEmitter
+            emitter="capsules"
+            debug
+            settings={{
                duration: 2,
                delay: 0,
                nbParticles: 180,
@@ -83,7 +98,7 @@ const Void = ({ ...props }) => {
                colorEnd: ["#ff0000", "#ff359f"],
                size: [0.01, 0.03],
             }}
-         />
+         /> */}
       </group>
    );
 };

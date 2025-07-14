@@ -3,6 +3,7 @@ import { Bloom, EffectComposer } from "@react-three/postprocessing";
 import { Magic } from "./Magic";
 import { Vji } from "./Vji";
 import { LoopBox } from "./LoopBox";
+import { Day2 } from "./Day2";
 
 export const Experience = () => {
    return (
@@ -25,12 +26,15 @@ export const Experience = () => {
             minAzimuthAngle={-Math.PI / 4}
             maxAzimuthAngle={Math.PI / 4}
          />
-         <group position={[0, -0.5, 0]}>
+         {/* <group position={[0, -0.5, 0]}>
             <Vji />
          </group>
 
          <group position={[0.5, -0.5, 0]}>
             <LoopBox />
+         </group> */}
+         <group>
+            <Day2 />
          </group>
 
          <EffectComposer>
