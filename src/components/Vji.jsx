@@ -62,7 +62,7 @@ const Void = ({ ...props }) => {
       <group {...props}>
          <VFXEmitter
             emitter="capsules"
-            debug
+            // debug
             settings={{
                duration: 2,
                delay: 0,
