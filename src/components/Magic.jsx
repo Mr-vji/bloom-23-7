@@ -264,7 +264,6 @@ const Ice = ({ ...props }) => {
                }}
             />
          </VFXEmitter>
-
          {/* Blast */}
          <VFXEmitter
             emitter="sparks"

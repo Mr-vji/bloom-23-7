@@ -10,27 +10,36 @@ export function YLogo(props) {
    return (
       <group {...props} dispose={null}>
          <mesh
+            visible={false}
             castShadow
             receiveShadow
             geometry={nodes["3DGeom-1"].geometry}
-            material={materials["*1"]}
+            // material={materials["*1"]}
             position={[5.507, 3.985, -0.2]}
-         />
+         >
+            {" "}
+            <meshStandardMaterial color="#4bc0f8" roghness={0.5} metalness={0.5} />
+         </mesh>
          <mesh
             castShadow
             receiveShadow
             geometry={nodes["3DGeom-2"].geometry}
-            material={nodes["3DGeom-2"].material}
+            // material={nodes["3DGeom-2"].material}
             position={[-9.244, 23.449, 0]}
-         />
+         >
+            <meshStandardMaterial color="#4bc0f8" roghness={0.5} metalness={0.5} />
+         </mesh>
          <mesh
             castShadow
             receiveShadow
             geometry={nodes["3DGeom-3"].geometry}
-            material={nodes["3DGeom-3"].material}
+            // material={nodes["3DGeom-3"].material}
             position={[-3.694, 5.248, 0]}
-         />
+         >
+            <meshStandardMaterial color="#4bc0f8" roghness={0.5} metalness={0.5} />
+         </mesh>
          <mesh
+            visible={false}
             castShadow
             receiveShadow
             geometry={nodes["3DGeom-4"].geometry}

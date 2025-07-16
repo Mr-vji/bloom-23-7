@@ -10,18 +10,18 @@ import Content from "./Yesca/Content";
 function App() {
    return (
       <>
-         {/* <Stats /> */}
+         <Stats />
          {/* <UI /> */}
          <Loader />
-         <Canvas shadows camera={{ position: [0, 1, 19], fov: 10 }}>
+         <Canvas shadows camera={{ position: [-1, 1, 19], fov: 10 }}>
             {/* <fog attach="fog" args={["black", 20, 30]} />
             <color attach="background" args={["black"]} /> */}
             {/* <Experience /> */}
 
-            <fog attach="fog" args={["#222C3D", 40, 50]} />
-            <color attach="background" args={["#222C3D"]} />
-            {/* <fog attach="fog" args={["#10141c", 20, 30]} />
-            <color attach="background" args={["#10141c"]} /> */}
+            {/* <fog attach="fog" args={["#222C3D", 40, 50]} />
+            <color attach="background" args={["#222C3D"]} /> */}
+            <fog attach="fog" args={["#10141c", 20, 30]} />
+            <color attach="background" args={["#10141c"]} />
             <Home />
          </Canvas>
          <Content />

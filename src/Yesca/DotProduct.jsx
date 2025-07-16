@@ -1,6 +1,8 @@
 import { useEffect, useRef, useState } from "react";
 import gsap from "gsap";
 import * as THREE from "three";
+import { Gltf, useGLTF } from "@react-three/drei";
+import { useFrame } from "@react-three/fiber";
 
 const MovingBox = ({ startX, gap }) => {
    const ref = useRef();
@@ -10,16 +12,37 @@ const MovingBox = ({ startX, gap }) => {
    const STARTING_POSITION = -4;
    const ENDING_POSITION = 6;
 
+   const { scene, materials } = useGLTF(`/models/DOT.glb`);
+
+   useEffect(() => {
+      scene.traverse((child) => {
+         if (child.isMesh) {
+            child.castShadow = true; // 👈 enables casting shadows
+            child.receiveShadow = true; // 👈 enables receiving shadows (optional)
+
+            child.material = new THREE.MeshStandardMaterial({
+               color: "white",
+               emissive: new THREE.Color("white"),
+               roughness: 1,
+               metalness: 0.5,
+               emissiveIntensity: 2.5,
+               side: THREE.DoubleSide,
+            });
+         }
+      });
+   }, [scene]);
+
    useEffect(() => {
       if (ref.current) {
-         ref.current.position.x = startX; // initialize each box at its own startX
+         ref.current.position.x = startX; // initialize each box at its otytwn startX
 
          const animate = () => {
             const currentX = ref.current.position.x;
             let targetX = currentX + gap; // move by gap amount each time
+            const v = -3.7;
 
             // Enable bloom if crossing x >= 0
-            if (currentX < -0.7 && targetX >= -0.7) {
+            if (currentX < v && targetX >= v) {
                setBloomActive(5);
             }
 
@@ -49,7 +72,6 @@ const MovingBox = ({ startX, gap }) => {
       }
    }, [gap]);
 
-   // Update material color based on bloomActive
    useEffect(() => {
       if (matRef.current) {
          const color = new THREE.Color("white");
@@ -60,21 +82,18 @@ const MovingBox = ({ startX, gap }) => {
 
    return (
       <group scale={0.2} ref={ref} position={[STARTING_POSITION, 0.3, 0]}>
-         <mesh rotation={[0, 0, 0]}>
-            <boxGeometry args={[1.2, 1, 0.5]} />
-            <meshBasicMaterial ref={matRef} color={"white"} />
-         </mesh>
+         <Gltf src="/models/DOT.glb" position={[1.82, -5.7, 0]} scale={0.2} />
       </group>
    );
 };
 
-export const LoopBox = () => {
+export const DotProduct = () => {
    const NUM_OBJECTS = 10; // number of objects
    const GAP = 1.0; // gap increment per movement
 
    return (
       <>
-         <group position={[0, 0, 0]}>
+         <group position={[0.4, 0, 0]}>
             {Array.from({ length: NUM_OBJECTS }, (_, i) => (
                <MovingBox key={i} startX={-4 - i * GAP} gap={GAP} />
             ))}
