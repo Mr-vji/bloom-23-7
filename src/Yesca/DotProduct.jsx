@@ -82,7 +82,7 @@ const MovingBox = ({ startX, gap }) => {
 
    return (
       <group scale={0.2} ref={ref} position={[STARTING_POSITION, 0.3, 0]}>
-         <Gltf src="/models/DOT.glb" position={[1.82, -5.7, 0]} scale={0.2} />
+         <Gltf src="/models/DOT.glb" position={[2, -5.45, 0]} scale={[0.25, 0.25, 0.25]} />
       </group>
    );
 };

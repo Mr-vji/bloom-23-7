@@ -13,7 +13,7 @@ function App() {
          {/* <Stats /> */}
          {/* <UI /> */}
          <Loader />
-         <Canvas shadows camera={{ position: [-1, 1, 19], fov: 10 }}>
+         <Canvas shadows camera={{ position: [0, 1, 19], fov: 10 }}>
             {/* <fog attach="fog" args={["black", 20, 30]} />
             <color attach="background" args={["black"]} /> */}
             {/* <Experience /> */}
