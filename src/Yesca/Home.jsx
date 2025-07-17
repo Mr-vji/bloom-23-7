@@ -63,7 +63,7 @@ export const Home = () => {
          </mesh>
          <group position={[-1.8, 0, 0]}>
             <YLogo scale={0.049} position={[-0.1 + 0.1, -1, 0]} />
-            <group position={[3.047, 0, 0]}>
+            <group position={[3.025, 0, 0]}>
                <DotProduct />
             </group>
             <mesh rotation={[-Math.PI / 2, 0, 0]} scale={1.25} position={[0.13, 0.45, 0]}>
