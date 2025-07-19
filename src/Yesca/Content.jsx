@@ -51,7 +51,7 @@ export default function Content() {
                   </div>
 
                   {/* Website link bottom left */}
-                  <p className="text-lg md:text-xl mt-4 md:mt-0">yesca.in</p>
+                  <p className="text-lg md:text-xl mt-4 md:mt-0">www.yesca.in</p>
                </div>
 
                {/* Bottom Right Button */}

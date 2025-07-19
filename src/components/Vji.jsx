@@ -32,7 +32,7 @@ const VFXS = () => {
             settings={{
                nbParticles: 1000,
                renderMode: "mesh",
-               intensity: 16,
+               intensity: 15,
                perParticleScale: (i) => [1, Math.random() * 8 + 0.5, 1],
             }}
          />
@@ -55,13 +55,13 @@ const Void = ({ ...props }) => {
             emitter="capsules"
             // debug
             settings={{
-               duration: 2,
+               duration: 0.7,
                delay: 0,
-               nbParticles: 180,
+               nbParticles: 100,
                spawnMode: "time",
                loop: true,
-               startPositionMin: [-0.2, 1.9, 0],
-               startPositionMax: [0.1, 1.9, 0],
+               startPositionMin: [-0.19, 2.5, -0.08],
+               startPositionMax: [0.19, 2.5, 0.08],
                startRotationMin: [0, 0, 0],
                startRotationMax: [0, 0, 0],
                particlesLifetime: [0.1, 4],
@@ -75,6 +75,28 @@ const Void = ({ ...props }) => {
                size: [0.01, 0.03],
             }}
          />
+
+         {/*  settings={{
+               duration: 2,
+               delay: 0,
+               nbParticles: 180,
+               spawnMode: "time",
+               loop: true,
+               startPositionMin: [-0.15, 2.3, -0.08],
+               startPositionMax: [0.15, 2.3, 0.08],
+               startRotationMin: [0, 0, 0],
+               startRotationMax: [0, 0, 0],
+               particlesLifetime: [0.1, 4],
+               speed: [0.5, 0.5],
+               directionMin: [0, 0, 0],
+               directionMax: [0, -1, 0],
+               rotationSpeedMin: [0, 0, 0],
+               rotationSpeedMax: [0, 0, 0],
+               colorStart: ["#ffffff", "#45eaff"],
+               colorEnd: ["#0053ff", "#3695ff"],
+               size: [0.01, 0.03],
+            }} */}
+
          {/* <VFXEmitter
             emitter="capsules"
             debug

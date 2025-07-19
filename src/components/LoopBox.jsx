@@ -7,7 +7,7 @@ const MovingBox = ({ startX, gap }) => {
    const matRef = useRef();
    const [bloomActive, setBloomActive] = useState(0);
 
-   const STARTING_POSITION = -4;
+   const STARTING_POSITION = 0; // changed to 0
    const ENDING_POSITION = 6;
 
    useEffect(() => {
@@ -30,7 +30,7 @@ const MovingBox = ({ startX, gap }) => {
                   duration: 1.5,
                   ease: "elastic.out(1.1,1)",
                   onComplete: () => {
-                     ref.current.position.x = STARTING_POSITION;
+                     ref.current.position.x = STARTING_POSITION; // reset to 0
                      setBloomActive(0);
                      animate(); // continue loop
                   },
@@ -76,7 +76,7 @@ export const LoopBox = () => {
       <>
          <group position={[0, 0, 0]}>
             {Array.from({ length: NUM_OBJECTS }, (_, i) => (
-               <MovingBox key={i} startX={-4 - i * GAP} gap={GAP} />
+               <MovingBox key={i} startX={0 - i * GAP} gap={GAP} />
             ))}
          </group>
       </>
