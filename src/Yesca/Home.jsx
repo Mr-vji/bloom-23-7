@@ -3,10 +3,12 @@ import { Vji } from "../components/Vji";
 import { Bloom, EffectComposer } from "@react-three/postprocessing";
 import * as THREE from "three";
 import { useRef } from "react";
-import { John } from "./John";
+import { Dot } from "./Dot";
 import { MainModel } from "./MainModel";
 import { useFrame } from "@react-three/fiber";
 import { Products } from "./Products";
+import { YLogo } from "./Models/YLogo";
+import { VFXParticles } from "../VFXPArticles";
 
 export const Home = () => {
    let vec3 = new THREE.Vector3();
@@ -38,30 +40,43 @@ export const Home = () => {
             minAzimuthAngle={-Math.PI / 4}
             maxAzimuthAngle={Math.PI / 4}
          /> */}
-         {/* <OrbitControls /> */}
+         <OrbitControls />
          <Environment preset="city" />
+
          <directionalLight
-            position={[0, 10, -1]}
+            position={[0, 8, -1]}
             castShadow
             intensity={3}
             shadow-mapSize-width={128}
             shadow-mapSize-height={128}
          />
-         <directionalLight position={[0, 1, 1]} color={"blue"} intensity={1.4} />
-         <group position={[-0.1, 0, 0]}>
-            <Vji position={[-0.62, -0.1, 0]} />
-            <Vji position={[-1.5, -0.1, 0]} />
-         </group>
-         <MainModel position={[-1.3, -1, 0]} scale={1.5} />
-         <John scale={0.9} position={[-0.61, -1.11, 0]} />
+         <directionalLight position={[0, 8, -1]} />
+         <directionalLight position={[0, 1, 1]} color={"blue"} intensity={2} />
+         <Dot scale={0.85} position={[-0.45, -1.2, 0]} />
+         <YLogo position={[-2, -0.99, 0]} scale={0.045} />
+         <VFXParticles position={[-1.38, 0.15, 0]} />
+         <VFXParticles position={[-0.95, 0.15, 0]} />
+
+         <mesh position={[-1.88, 0.34, 0]} rotation={[-Math.PI / 2, 0, 0]}>
+            <planeGeometry args={[0.45, 0.2]} />
+            <meshPhongMaterial color={"white"} emissive={"blue"} emissiveIntensity={20} />
+         </mesh>
+         <mesh position={[-2.78, 0.34, 0]} rotation={[-Math.PI / 2, 0, 0]}>
+            <planeGeometry args={[0.45, 0.2]} />
+            <meshPhongMaterial color={"white"} emissive={"blue"} emissiveIntensity={20} />
+         </mesh>
+
          {/* <Products /> */}
          <mesh receiveShadow rotation={[-Math.PI / 2, 0, 0]} position={[0, -1, 0]}>
             <planeGeometry args={[100, 100]} />
             <meshStandardMaterial color="#222C3D" roghness={0} metalness={0.9} />
          </mesh>
 
+         {/* <EffectComposer>
+            <Bloom intensity={0.9} luminanceThreshold={1.0} mipmapBlur />
+         </EffectComposer> */}
          <EffectComposer>
-            <Bloom intensity={0.3} luminanceThreshold={1.0} mipmapBlur />
+            <Bloom mipmapBlur intensity={1.2} luminanceThreshold={1} />
          </EffectComposer>
       </>
    );

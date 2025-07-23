@@ -8,7 +8,7 @@ function App() {
       <>
          {/* <Stats /> */}
          <Loader />
-         <Canvas gl={{ antialias: false }} shadows camera={{ position: [6, 2, 19], fov: 10 }}>
+         <Canvas gl={{ antialias: false }} shadows camera={{ position: [4, 4, 19], fov: 10 }}>
             <fog attach="fog" args={["#10141c", 20, 30]} />
             <color attach="background" args={["#10141c"]} />
             <Preload all />
