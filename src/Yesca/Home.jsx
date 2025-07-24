@@ -15,21 +15,21 @@ export const Home = () => {
    let vec3 = new THREE.Vector3();
    const initialCameraPos = useRef();
    const { isMobile } = useMobile();
-   // useFrame(({ camera, mouse }) => {
-   //    if (!initialCameraPos.current) {
-   //       // Store initial position once
-   //       initialCameraPos.current = camera.position.clone();
-   //    }
+   useFrame(({ camera, mouse }) => {
+      if (!initialCameraPos.current) {
+         // Store initial position once
+         initialCameraPos.current = camera.position.clone();
+      }
 
-   //    // Calculate target based on initial position
-   //    vec3.set(
-   //       initialCameraPos.current.x + mouse.x * 0.3 * 8,
-   //       initialCameraPos.current.y + mouse.y * 0.3 * 8,
-   //       initialCameraPos.current.z // keep original z fixed
-   //    );
-   //    camera.position.lerp(vec3, 0.02);
-   //    camera.lookAt(0, 0, 0);
-   // });
+      // Calculate target based on initial position
+      vec3.set(
+         initialCameraPos.current.x + mouse.x * 0.3 * 8,
+         initialCameraPos.current.y + mouse.y * 0.3 * 8,
+         initialCameraPos.current.z // keep original z fixed
+      );
+      camera.position.lerp(vec3, 0.02);
+      camera.lookAt(0, 0, 0);
+   });
 
    return (
       <>
@@ -41,7 +41,7 @@ export const Home = () => {
             minAzimuthAngle={-Math.PI / 4}
             maxAzimuthAngle={Math.PI / 4}
          /> */}
-         <OrbitControls />
+         {/* <OrbitControls /> */}
          <Environment preset="city" />
 
          <directionalLight
