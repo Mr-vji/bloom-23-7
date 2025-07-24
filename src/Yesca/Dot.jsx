@@ -35,11 +35,10 @@ export const Dot = (props) => {
                   },
                });
             };
-            // setTimeout(() => move(), 3500);
             move();
          });
       }
-   }, []);
+   });
 
    return (
       <>
