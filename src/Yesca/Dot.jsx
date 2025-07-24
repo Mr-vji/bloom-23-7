@@ -48,48 +48,47 @@ export const Dot = (props) => {
             {Array.from({ length: count }, (_, i) => {
                const cloned = scene.clone();
 
-               // Traverse and replace material with yellow color only (no texture)
-               // cloned.traverse((child) => {
-               //    if (child.isMesh) {
-               //       child.material = new THREE.MeshStandardMaterial({
-               //          color: "blue",
-               //          emissive: "blue",
-               //          emissiveIntensity: 1,
-               //          roughness: 0.5,
-               //          metalness: 0.5,
-               //          side: THREE.DoubleSide,
-               //       });
-               //       child.material.needsUpdate = true;
-               //       console.log(child.name);
-               //    }
-               // });
+               cloned.traverse((child) => {
+                  if (child.isMesh) {
+                     child.material = new THREE.MeshStandardMaterial({
+                        color: "#2e3192",
+                        // emissive: "#2e3192",
+                        // emissiveIntensity: 1,
+                        roughness: 0.5,
+                        metalness: 0.5,
+                        side: THREE.DoubleSide,
+                     });
+                     child.material.needsUpdate = true;
+                     // console.log(child.name);
+                  }
+               });
                cloned.traverse((child) => {
                   if (child.isMesh) {
                      // Check if the current child's name is 'Plane'
                      child.castShadow = true;
-                     if (child.name === "Plane") {
-                        child.material = new THREE.MeshPhongMaterial({
-                           color: "blue", // Changed color to
-                           emissive: "blue", // You might also want to change emissive to red for consistency with bloom
-                           emissiveIntensity: 1,
-                           roughness: 0.5,
-                           metalness: 0.5,
-                           side: THREE.DoubleSide,
-                        });
-                        child.material.needsUpdate = true;
-                        console.log(`Changed material of ${child.name} to red.`);
-                     } else {
-                        // For other meshes, apply your original blue material
-                        child.material = new THREE.MeshStandardMaterial({
-                           color: "blue",
-                           emissive: "blue",
-                           emissiveIntensity: 10,
-                           roughness: 0.5,
-                           metalness: 0.5,
-                           side: THREE.DoubleSide,
-                        });
-                        child.material.needsUpdate = true;
-                     }
+                     // if (child.name === "Plane") {
+                     //    child.material = new THREE.MeshPhongMaterial({
+                     //       color: "blue", // Changed color to
+                     //       emissive: "blue", // You might also want to change emissive to red for consistency with bloom
+                     //       emissiveIntensity: 1,
+                     //       roughness: 0.5,
+                     //       metalness: 0.5,
+                     //       side: THREE.DoubleSide,
+                     //    });
+                     //    child.material.needsUpdate = true;
+                     //    console.log(`Changed material of ${child.name} to red.`);
+                     // } else {
+                     //    // For other meshes, apply your original blue material
+                     //    child.material = new THREE.MeshStandardMaterial({
+                     //       color: "blue",
+                     //       emissive: "blue",
+                     //       emissiveIntensity: 10,
+                     //       roughness: 0.5,
+                     //       metalness: 0.5,
+                     //       side: THREE.DoubleSide,
+                     //    });
+                     //    child.material.needsUpdate = true;
+                     // }
                   }
                });
                return (

@@ -1,4 +1,4 @@
-import { Environment, OrbitControls } from "@react-three/drei";
+import { ContactShadows, Environment, OrbitControls, Scroll } from "@react-three/drei";
 import { Vji } from "../components/Vji";
 import { Bloom, EffectComposer } from "@react-three/postprocessing";
 import * as THREE from "three";
@@ -32,7 +32,7 @@ export const Home = () => {
    });
 
    return (
-      <>
+      <Scroll>
          {/* <OrbitControls
             minDistance={19}
             maxDistance={19}
@@ -99,10 +99,16 @@ export const Home = () => {
             </mesh>
 
             {/* <Products /> */}
-            <mesh receiveShadow rotation={[-Math.PI / 2, 0, 0]} position={[0, -1, 0]}>
+            <mesh
+               visible={false}
+               receiveShadow
+               rotation={[-Math.PI / 2, 0, 0]}
+               position={[0, -1, 0]}
+            >
                <planeGeometry args={[100, 100]} />
-               <meshStandardMaterial color="#222C3D" roghness={0} metalness={0.9} />
+               <meshStandardMaterial color="#75a7da" roghness={0} metalness={0.9} />
             </mesh>
+            <ContactShadows position={[0, -1, 0]} scale={8} blur={0.5} far={1} opacity={0.25} />
          </group>
          {/* <EffectComposer>
             <Bloom intensity={0.9} luminanceThreshold={1.0} mipmapBlur />
@@ -110,6 +116,6 @@ export const Home = () => {
          <EffectComposer>
             <Bloom mipmapBlur intensity={1.2} luminanceThreshold={1} />
          </EffectComposer>
-      </>
+      </Scroll>
    );
 };

@@ -14,13 +14,20 @@ const tmpScale = new Vector3(0.4, 0.4, 0.4);
 const tmpMatrix = new Matrix4();
 const tmpColor = new Color();
 
+const PARTICLE_COLORS = [
+   new Color("#B0B0B0"), // Light Grey
+   new Color("#1B1C5A"), // Very Dark Blue
+   new Color("#7EC8E3"), // Sky Blue
+   new Color("#008080"), // Teal
+   new Color("#C0C0C0"), // Silver
+];
+
 export const VFXParticles = ({ settings = {}, ...props }) => {
    const { nbParticles = 600 } = settings;
    const mesh = useRef();
 
    const defaultGeometry = useMemo(() => new PlaneGeometry(0.5, 0.5), []);
 
-   // Storing initial lifetime values to check against in useFrame
    const particleLifetimes = useMemo(
       () =>
          new Array(nbParticles).fill(0).map(() => ({
@@ -38,8 +45,8 @@ export const VFXParticles = ({ settings = {}, ...props }) => {
       const instanceSpeed = mesh.current.geometry.getAttribute("instanceSpeed");
       const instanceRotationSpeed = mesh.current.geometry.getAttribute("instanceRotationSpeed");
 
-      const position = [randFloatSpread(0.3), randFloatSpread(0.0), randFloatSpread(0.1)];
-      const scale = [randFloatSpread(0.4), randFloatSpread(0.4), randFloatSpread(0.4)];
+      const position = [randFloatSpread(0.33), randFloatSpread(0.1), randFloatSpread(0.1)];
+      const scale = [randFloatSpread(0.25), randFloatSpread(0.25), randFloatSpread(0.25)];
       const rotation = [
          randFloatSpread(Math.PI),
          randFloatSpread(Math.PI),
@@ -51,24 +58,24 @@ export const VFXParticles = ({ settings = {}, ...props }) => {
       tmpScale.set(...scale);
       tmpMatrix.compose(tmpPosition, tmpRotation, tmpScale);
 
-      // Use setMatrixAt with the current index
       mesh.current.setMatrixAt(index, tmpMatrix);
 
       tmpColor.setRGB(0, 0, 0);
       instanceColor.set([tmpColor.r, tmpColor.g, tmpColor.b], index * 3);
 
-      tmpColor.setRGB(Math.random(), Math.random(), Math.random());
+      const randomColor = PARTICLE_COLORS[Math.floor(Math.random() * PARTICLE_COLORS.length)];
+      tmpColor.copy(randomColor);
       instanceColorEnd.set([tmpColor.r, tmpColor.g, tmpColor.b], index * 3);
 
       const direction = [randFloatSpread(0.5), 0.5, randFloatSpread(0.5)];
       instanceDirection.set(direction, index * 3);
 
-      const duration = randFloat(0.1, 5);
-      particleLifetimes[index].startTime = currentTime; // Store the start time on CPU
-      particleLifetimes[index].duration = duration; // Store the duration on CPU
-      instanceLifetime.set([currentTime, duration], index * 2); // Update GPU attribute
+      const duration = randFloat(0.1, 2);
+      particleLifetimes[index].startTime = currentTime;
+      particleLifetimes[index].duration = duration;
+      instanceLifetime.set([currentTime, duration], index * 2);
 
-      const speed = randFloat(0, 1);
+      const speed = randFloat(0, 0.6);
       instanceSpeed.set([speed], index);
 
       const rotationSpeed = [randFloatSpread(1), randFloatSpread(1), randFloatSpread(1)];
@@ -76,13 +83,10 @@ export const VFXParticles = ({ settings = {}, ...props }) => {
    };
 
    useEffect(() => {
-      // Initial emit for all particles
-      // This runs only once on mount
       if (mesh.current) {
          for (let i = 0; i < nbParticles; i++) {
-            emit(i, 0); // Initial time 0
+            emit(i, 0);
          }
-         // Mark all initial attributes as needing update
          mesh.current.instanceMatrix.needsUpdate = true;
          mesh.current.geometry.getAttribute("instanceColor").needsUpdate = true;
          mesh.current.geometry.getAttribute("instanceColorEnd").needsUpdate = true;
@@ -106,12 +110,11 @@ export const VFXParticles = ({ settings = {}, ...props }) => {
          const effectiveAge = currentTime - p.startTime;
 
          if (effectiveAge >= p.duration) {
-            emit(i, currentTime); // Re-emit this particle
-            needsAttributeUpdate = true; // Flag that attributes need updating
+            emit(i, currentTime);
+            needsAttributeUpdate = true;
          }
       }
 
-      // Only mark attributes for update if any particle was re-emitted
       if (needsAttributeUpdate) {
          mesh.current.instanceMatrix.needsUpdate = true;
          mesh.current.geometry.getAttribute("instanceColor").needsUpdate = true;
@@ -189,7 +192,7 @@ attribute vec3 instanceRotationSpeed;
 attribute vec3 instanceDirection;
 attribute vec3 instanceColor;
 attribute vec3 instanceColorEnd;
-attribute vec2 instanceLifetime; // x: startTime, y: duration
+attribute vec2 instanceLifetime;
 
 void main() {
     float duration = instanceLifetime.y;
@@ -230,5 +233,7 @@ void main() {
 }
 `
 );
+
+ParticlesMaterial.transparent = true;
 
 extend({ ParticlesMaterial });

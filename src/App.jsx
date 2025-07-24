@@ -1,22 +1,32 @@
-import { Loader, Preload } from "@react-three/drei";
-import { Canvas } from "@react-three/fiber";
+import { Loader, Preload, Scroll, ScrollControls, Stats, useScroll } from "@react-three/drei";
+import { Canvas, useFrame } from "@react-three/fiber";
+import { useEffect } from "react";
+
 import { Home } from "./Yesca/Home";
-import Content from "./Yesca/Content";
-import { Test } from "./Test";
+import { UI } from "./UI";
+import Header from "./Header";
+import { BackgroundChanger } from "./BackgroundChanger.jsx";
+import { Background } from "./Background.jsx";
 
 function App() {
    return (
       <>
-         {/* <Stats /> */}
          <Loader />
+
          <Canvas gl={{ antialias: true }} shadows camera={{ position: [4, 2, 19], fov: 10 }}>
-            <fog attach="fog" args={["#10141c", 20, 30]} />
-            <color attach="background" args={["#10141c"]} />
             <Preload all />
-            <Home />
-            {/* <Test /> */}
+
+            <ScrollControls pages={4} damping={0.2}>
+               <BackgroundChanger />
+               {/* <Background /> */}
+               <Home />
+
+               <Scroll html>
+                  <UI />
+                  <Header />
+               </Scroll>
+            </ScrollControls>
          </Canvas>
-         <Content />
       </>
    );
 }

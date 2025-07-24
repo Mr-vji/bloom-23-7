@@ -7,6 +7,11 @@
 
 body {
    margin: 0;
-   background-color: #10141c;
    overflow: hidden;
+   background: #2d358e;
+   background: linear-gradient(180deg, rgba(45, 53, 142, 1) 0%, rgba(117, 167, 218, 1) 83%);
+
+   /* scroll bar */
+   scrollbar-color: #ffffff00 #00000000; /* Blue thumb, light blue-grey track */
+   scrollbar-width: none; /* Optional: Make it thinner */
 }

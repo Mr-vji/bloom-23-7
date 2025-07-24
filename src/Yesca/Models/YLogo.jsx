@@ -28,7 +28,7 @@ export function YLogo(props) {
             // material={nodes["3DGeom-2"].material}
             position={[-9.244, 23.449, 0]}
          >
-            <meshStandardMaterial color={"blue"} roughness={roughness} metalness={mat} />
+            <meshStandardMaterial color={"#2e3192"} roughness={roughness} metalness={mat} />
          </mesh>
          <mesh
             castShadow
@@ -38,7 +38,7 @@ export function YLogo(props) {
             position={[-3.694, 5.248, 0]}
          >
             <meshStandardMaterial
-               color={"blue"}
+               color={"#2e3192"}
                side={THREE.DoubleSide}
                roughness={roughness}
                metalness={mat}
